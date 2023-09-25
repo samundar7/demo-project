@@ -13,7 +13,7 @@ pipeline {
 
         stage('Build The Project') {
             steps {
-                dir("C:/ProgramData/Jenkins/.jenkins/workspace/Jenkins1/Jenkins_Demo") {
+                dir("C:/ProgramData/Jenkins/.jenkins/workspace/DEMO_PROJECT/Jenkins_Demo") {
                     bat "mvn -B -DskipTests clean package"
                 }
             }
@@ -21,7 +21,7 @@ pipeline {
 
         stage('Run Test Cases') {
             steps {
-                dir("C:/ProgramData/Jenkins/.jenkins/workspace/Jenkins1/Jenkins_Demo") {
+                dir("C:/ProgramData/Jenkins/.jenkins/workspace/DEMO_PROJECT/Jenkins_Demo") {
                     bat "mvn test"
                 }
             }

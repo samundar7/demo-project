@@ -1,10 +1,6 @@
 pipeline {
     agent any
 
-    environment {
-        M2_HOME = 'C:\\path\\to\\your\\maven\\installation'  // Set your Maven installation path
-        PATH = "${M2_HOME}\\bin;${env.PATH}"
-    }
 
     stages {
         stage('Checkout SCM SCRIPT') {

@@ -2,32 +2,39 @@ pipeline {
     agent any
 
     stages {
-    
-    	stage('Checkout') {
-    		steps {
-       			 // Checkout the code from your Git repository
-      			  checkout scm
-   				 }
-		}
-    	
-    	
+        stage('Checkout') {
+            steps {
+                // Checkout the code from your Git repository
+                checkout scm
+            }
+        }
         stage('Build') {
             steps {
-                // Build the Maven project
-                sh 'clean install'
+                // Navigate to the project directory
+                dir('Jenkins_Demo') {
+                    // Build the Maven project
+                    sh 'mvn clean install'
+                }
             }
         }
         stage('Run Tests') {
             steps {
-                // Run your Maven project's tests
-                sh 'mvn test'
+                // Navigate to the project directory
+                dir('Jenkins_Demo') {
+                    // Run your Maven project's tests
+                    sh 'mvn test'
+                }
             }
         }
         stage('Run Project') {
             steps {
-                // Run your Maven project (adjust the command as needed)
-                sh 'mvn exec:java'
+                // Navigate to the project directory
+                dir('Jenkins_Demo') {
+                    // Run your Maven project (adjust the command as needed)
+                    sh 'mvn exec:java'
+                }
             }
         }
     }
 }
+

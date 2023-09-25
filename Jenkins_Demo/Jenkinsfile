@@ -2,15 +2,24 @@ pipeline {
     agent any
 
     environment {
-        M2_HOME = 'C:\\Users\\samundar.singh\\apache-maven-3.9.4-bin\\apache-maven-3.9.4'
-        PATH = "${M2_HOME}\\bin:${PATH}"
+        M2_HOME = 'C:\\path\\to\\your\\maven\\installation'  // Set your Maven installation path
+        PATH = "${M2_HOME}\\bin;${env.PATH}"
     }
 
     stages {
+        stage('Initialize') {
+            steps {
+                bat """
+                echo PATH = %M2_HOME%\\bin;%PATH%
+                echo M2_HOME = %M2_HOME%
+                """
+            }
+        }
+
         stage('Build') {
             steps {
-                dir("/var/lib/jenkins/workspace/demo project/Jenkins_Demo") {
-                    sh 'mvn -B -DskipTests clean package'
+                dir("C:\\path\\to\\your\\project\\workspace") {
+                    bat "mvn -B -DskipTests clean package"
                 }
             }
         }
@@ -20,9 +29,8 @@ pipeline {
         always {
             junit(
                 allowEmptyResults: true,
-                testResults: '*/test-reports/*.xml'
+                testResults: '**/target/test-reports/*.xml'
             )
         }
     }
 }
-

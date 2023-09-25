@@ -11,7 +11,8 @@ pipeline {
         stage('Build') {
             steps {
                     // Build the Maven project
-                    sh 'cd Jenkins_Demo && mvn clean install'     
+                    sh 'cd Jenkins_Demo'
+                    sh 'mvn clean install'     
             }
         }
         stage('Run Tests') {

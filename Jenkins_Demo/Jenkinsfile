@@ -5,25 +5,33 @@ pipeline {
         M2_HOME = 'C:\\path\\to\\your\\maven\\installation'  // Set your Maven installation path
         PATH = "${M2_HOME}\\bin;${env.PATH}"
     }
-
+    
     stages {
-        stage('Initialize') {
+        stage('Checkout SCM') {
             steps {
-                bat """
-                echo PATH = %M2_HOME%\\bin;%PATH%
-                echo M2_HOME = %M2_HOME%
-                """
+                // Add your Git checkout step here
+                // This should remain unchanged from your existing setup
+                checkout([$class: 'GitSCM', branches: [[name: '*/main']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[url: 'https://github.com/samundar7/demo-project.git']]])
             }
         }
-
         stage('Build') {
             steps {
-                dir("C:\\path\\to\\your\\project\\workspace") {
-                    bat "mvn -B -DskipTests clean package"
+                script {
+                    // Change the working directory to where your pom.xml is located
+                    def workspaceDir = "C:/ProgramData/Jenkins/.jenkins/workspace/Jenkins1/Jenkins_Demo"
+                    dir(workspaceDir) {
+                        // Run the Maven build command
+                        bat "mvn -B -DskipTests clean package"
+                    }
                 }
             }
         }
     }
+    
+    post {
+        // Add post-build actions as needed
+    }
+}
 
     post {
         always {

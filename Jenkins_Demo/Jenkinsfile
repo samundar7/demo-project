@@ -8,15 +8,7 @@ pipeline {
                 checkout scm
             }
         }
-        stage('Build') {
-            steps {
-                // Navigate to the project directory
-                dir('demo project/Jenkins_Demo') {
-                    // Build the Maven project
-                    sh 'mvn clean install'
-                }
-            }
-        }
+
         stage('Run Tests') {
             steps {
                 // Navigate to the project directory

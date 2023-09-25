@@ -8,13 +8,18 @@ pipeline {
                 checkout scm
             }
         }
-
+        stage('Build') {
+            steps {
+                    // Build the Maven project
+                    sh 'cd Jenkins_Demo && mvn clean install'     
+            }
+        }
         stage('Run Tests') {
             steps {
                 // Navigate to the project directory
                 dir('demo project/Jenkins_Demo') {
                     // Run your Maven project's tests
-                    sh 'mvn test'
+                    sh 'cd Jenkins_Demo && mvn test'
                 }
             }
         }

@@ -7,13 +7,13 @@ pipeline {
     }
 
     stages {
-        stage('Checkout SCM') {
+        stage('Checkout SCM SCRIPT') {
             steps {
                 checkout([$class: 'GitSCM', branches: [[name: '*/main']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[url: 'https://github.com/samundar7/demo-project.git']]])
             }
         }
 
-        stage('Build') {
+        stage('Build THE Project') {
             steps {
                 dir("C:/ProgramData/Jenkins/.jenkins/workspace/Jenkins1/Jenkins_Demo") {
                     bat "mvn -B -DskipTests clean package"
@@ -21,7 +21,7 @@ pipeline {
             }
         }
 
-        stage('Run Test') {
+        stage('Run Test Case') {
             steps {
                 dir("C:/ProgramData/Jenkins/.jenkins/workspace/Jenkins1/Jenkins_Demo") {
                     bat "mvn test"

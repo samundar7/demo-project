@@ -11,7 +11,7 @@ pipeline {
         stage('Build') {
             steps {
                 // Navigate to the project directory
-                dir('Jenkins_Demo') {
+                dir('demo project\Jenkins_Demo') {
                     // Build the Maven project
                     sh 'mvn clean install'
                 }
@@ -20,21 +20,22 @@ pipeline {
         stage('Run Tests') {
             steps {
                 // Navigate to the project directory
-                dir('Jenkins_Demo') {
+                dir('demo project\Jenkins_Demo') {
                     // Run your Maven project's tests
                     sh 'mvn test'
                 }
             }
         }
-        stage('Run Project') {
-            steps {
-                // Navigate to the project directory
-                dir('Jenkins_Demo') {
-                    // Run your Maven project (adjust the command as needed)
-                    sh 'mvn exec:java'
-                }
-            }
-        }
+			stage('Run Project') {
+			    steps {
+			        // Navigate to the project directory
+			        dir('Jenkins_Demo') {
+			            // Run your Maven project with the full path to Maven executable
+			            sh 'C:\\path\\to\\maven\\bin\\mvn exec:java' // Replace with the actual path
+			        }
+			    }
+			}
+
     }
 }
 

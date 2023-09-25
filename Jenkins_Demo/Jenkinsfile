@@ -26,17 +26,18 @@ pipeline {
                 }
             }
         }
+        stage('Run Test'){
+        	steps {
+        		    script {
+                    def workspaceDir = "C:/ProgramData/Jenkins/.jenkins/workspace/Jenkins1/Jenkins_Demo"
+                    dir(workspaceDir) {
+                        // Run the test case
+                        bat "mvn test"
+                    }
+                }
+        	}
+        }
     }
     
  
-
-
-    post {
-        always {
-            junit(
-                allowEmptyResults: true,
-                testResults: '**/target/test-reports/*.xml'
-            )
-        }
-    }
 }

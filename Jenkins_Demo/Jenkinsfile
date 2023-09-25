@@ -28,10 +28,8 @@ pipeline {
         }
     }
     
-    post {
-        // Add post-build actions as needed
-    }
-}
+ 
+
 
     post {
         always {

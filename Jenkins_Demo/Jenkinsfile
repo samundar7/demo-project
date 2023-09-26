@@ -19,7 +19,7 @@ pipeline {
             }
         }
 
-        stage('Run Test Cases') {
+        stage('Run The Test Cases') {
             steps {
                 dir("C:/ProgramData/Jenkins/.jenkins/workspace/DEMO_PROJECT/Jenkins_Demo") {
                     bat "mvn test"
